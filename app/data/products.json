@@ -1,0 +1,9 @@
+[
+  {"name": "Tripel Karmeliet",
+  "type": "bottle",
+  "id": 1
+  },
+  {"name" : "Queue de charrue",
+   "type": "bottle",
+   "id": 2}
+]

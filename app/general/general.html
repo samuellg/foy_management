@@ -1,1 +1,13 @@
 <p>This is the partial for general view.</p>
+<div>
+	Current user : {{currentUser.name}}
+<div>
+  <select ng-model="currentUser" ng-options="user.name for user in users" size="10"></select>
+</div>
+<div>
+<ul>
+	<li ng:repeat="product in products">
+      <button ng:click="buy(product)" >{{product.name}}</button>
+    </li>
+</ul>
+</div>
