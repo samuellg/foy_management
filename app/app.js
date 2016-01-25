@@ -6,7 +6,9 @@ angular.module('myApp', [
   'myApp.general',
   'myApp.stats',
   'myApp.admin',
-  'myApp.version'
+  'myApp.stocks',
+  'myApp.version',
+  'nya.bootstrap.select'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/general'});

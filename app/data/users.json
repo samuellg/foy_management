@@ -1,4 +1,6 @@
 [
-  {"name": "Sam"},
-  {"name" : "Lina"}
+  {"name": "Sam",
+   "balance": 10},
+  {"name" : "Lina",
+   "balance": 15}
 ]

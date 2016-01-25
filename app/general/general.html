@@ -1,13 +1,25 @@
-<p>This is the partial for general view.</p>
-<div>
-	Current user : {{currentUser.name}}
-<div>
-  <select ng-model="currentUser" ng-options="user.name for user in users" size="10"></select>
+<div class="col-xs-3">
+	<div class="wisteria-text">
+		<a href="#/admin"><span class="fui-plus-circle pull-right"></span></a><strong>Select an user</strong></br>
+	</div>
+	<ol class="nya-bs-select" ng-model="currentUser" data-live-search="true">
+	<li nya-bs-option="user in users">
+	  <!-- the text content of anchor element will be used for search -->
+	  <a>
+	    {{user.name}}
+	    <span class="glyphicon glyphicon-ok check-mark"></span>
+	  </a>
+	</li>
+	</ol>
+	
+
 </div>
-<div>
-<ul>
-	<li ng:repeat="product in products">
-      <button ng:click="buy(product)" >{{product.name}}</button>
-    </li>
-</ul>
+<div class="col-xs-9">
+	<ul>
+		<li ng:repeat="product in products" class="list-unstyled">
+			<div class="col-xs-3">
+	    		<button class="btn btn-block btn-lg btn-inverse" ng:click="buy(product, currentUser)" >{{product.name}}</button>
+	    	</div>
+	    </li>
+	</ul>
 </div>

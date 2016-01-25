@@ -20,8 +20,20 @@ angular.module('myApp.general', ['ngRoute'])
    $http.get('data/products.json').success(function(data) {
     $scope.products = data;
    });
-   $scope.buy = function(product) {
-   	alert("Achat effectué : " + product.name);
+
+   /**
+   * buying function
+   */
+   $scope.buy = function(product, user) {
+   	if(user == "noUserSelected"){
+   		alert("Please select an user");
+   	}
+   	else{
+   		alert("Bought : " + product.name + " by " + user.name + "\n" + "New balance : " + user.balance);
+   	}
    };
+
+   // Initiate currentUser
+   $scope.currentUser = "noUserSelected";
 }]);
 
