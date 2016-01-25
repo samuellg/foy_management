@@ -4,11 +4,11 @@
 angular.module('myApp.general', ['ngRoute'])
 
 
-.controller('GeneralCtrl', ['$scope','$http', function($scope, $http) {
-   $http.get('data/users.json').success(function(data) {
+.controller('GeneralCtrl', ['$scope','$http', 'toastr', function($scope, $http, toastr) {
+   $http.get('api/users').success(function(data) {
    	$scope.users = data;
    });
-   $http.get('data/products.json').success(function(data) {
+   $http.get('api/products').success(function(data) {
     $scope.products = data;
    });
 
@@ -20,12 +20,15 @@ angular.module('myApp.general', ['ngRoute'])
    		alert("Please select an user");
    	}
    	else{
-   		alert("Bought : " + product.name + " by " + user.name + "\n" + "New balance : " + user.balance);
+   		toastr.success("Bought : " + product.name + " by " + user.firstName, "New balance : " + user.balance);
    	}
    };
 
    // Initiate currentUser
    $scope.currentUser = "noUserSelected";
+
+   /** Return button class according to product type (the color is changing...)
+   */
    $scope.getButtonClass = function(product){
     if(product.type == "bottle"){
       return "btn-inverse";
@@ -40,5 +43,7 @@ angular.module('myApp.general', ['ngRoute'])
       return "btn-default";
     }
    };
+
+   
 }]);
 

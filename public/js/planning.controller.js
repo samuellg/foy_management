@@ -2,6 +2,6 @@
 
 angular.module('myApp.planning', ['ngRoute'])
 
-.controller('Planning', [function() {
+.controller('PlanningCtrl', [function() {
 
 }]);

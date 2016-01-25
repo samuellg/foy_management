@@ -9,7 +9,9 @@ angular.module('myApp', [
   'myApp.stocks',
   'myApp.planning',
   'myApp.version',
-  'nya.bootstrap.select'
+  'nya.bootstrap.select',
+  'ngAnimate',
+  'toastr'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.otherwise({redirectTo: '/general'});
@@ -37,6 +39,10 @@ config(['$routeProvider', function($routeProvider) {
     .when('/stocks', {
     templateUrl: 'views/stocks.html',
     controller: 'StocksCtrl'
-  });
+  })
+
+    .when('/newUser', {
+      templateUrl: 'views/newUser.html'
+    });
 
 }]);

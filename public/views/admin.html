@@ -15,12 +15,12 @@
 		</div>
 		<div class="col-xs-3" ng-show="negativeAuthorized">
 			<label>Montant max</label>
-			<input type="text" class="form-control col-xs-3" placeholder="Inactive" value="">
+			<input type="text" class="form-control col-xs-3" placeholder="Inactive" value="" ng-model="maxAmount">
 		</div>
 	</div>
 	<div class="row">
 		<div class="col-xs-3">
-			<a class="btn btn-block btn-lg btn-success" href="#fakelink">Valider</a>
+			<a class="btn btn-block btn-lg btn-success" ng-click="validateForm(negativeAuthorized, maxAmount)">Valider</a>
 		</div>
 	</div>
 </div>

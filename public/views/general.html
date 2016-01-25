@@ -1,23 +1,26 @@
-<div class="col-xs-3">
+<div class="col-md-3 col-xs-12">
 	<div class="wisteria-text">
-		<a href="#/admin"><span class="fui-plus-circle pull-right"></span></a><strong>Select an user</strong></br>
+		<a href="#/newUser"><span class="fui-plus-circle pull-right"></span></a><strong>Select an user</strong></br>
 	</div>
 	<ol class="nya-bs-select" ng-model="currentUser" data-live-search="true">
 	<li nya-bs-option="user in users">
 	  <!-- the text content of anchor element will be used for search -->
 	  <a>
-	    {{user.name}}
+	    {{user.firstName}}
 	    <span class="glyphicon glyphicon-ok check-mark"></span>
 	  </a>
 	</li>
 	</ol>
-	
+	<div class="wisteria-text">
+		{{currentUser.firstName + " " + currentUser.lastName}}</br>
+		Solde : {{currentUser.balance}}
+	</div>
 
 </div>
-<div class="col-xs-9">
+<div class="col-md-9 col-xs-12">
 	<ul>
 		<li ng:repeat="product in products" class="list-unstyled">
-			<div class="col-xs-3">
+			<div class="col-md-3 col-xs-6">
 	    		<button class="btn btn-block btn-lg {{getButtonClass(product)}} product" ng:click="buy(product, currentUser)" >{{product.name}}</button>
 	    	</div>
 	    </li>

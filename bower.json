@@ -13,6 +13,8 @@
     "html5-boilerplate": "~5.2.0",
     "bootstrap": "~3.1.1",
     "flat-ui": "~2.2.2",
-    "nya-bootstrap-select": "~2"
+    "nya-bootstrap-select": "~2",
+    "angular-toastr": "~1.6.0",
+    "angular-animate": "~1.4.9"
   }
 }
