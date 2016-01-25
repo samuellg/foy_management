@@ -35,5 +35,19 @@ angular.module('myApp.general', ['ngRoute'])
 
    // Initiate currentUser
    $scope.currentUser = "noUserSelected";
+   $scope.getButtonClass = function(product){
+    if(product.type == "bottle"){
+      return "btn-inverse";
+    }
+    else if(product.type == "tapBeer"){
+      return "btn-info";
+    }
+    else if(product.type == "food"){
+      return "btn-warning";
+    }
+    else{
+      return "btn-default";
+    }
+   };
 }]);
 

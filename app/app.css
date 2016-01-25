@@ -32,3 +32,10 @@
 .wisteria-text {
   color:#8e44ad;
 }
+
+button.product {
+   margin-top:4px;
+ margin-right:2px;
+ margin-bottom:4px;
+ margin-left:2px; 
+}

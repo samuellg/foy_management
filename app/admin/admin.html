@@ -1,1 +1,30 @@
-Test admin
+<div>
+	<h4>Gestion du négatif</h4>
+	<div class="row">
+		<div class="col-xs-3">
+			<label class="checkbox" for="checkbox1">
+				<input class="custom-checkbox" value="" id="checkbox1" data-toggle="checkbox" type="checkbox" ng-model="negativeAuthorized">
+				<span class="icons">
+					<span class="icon-unchecked">
+					</span>
+					<span class="icon-checked">
+					</span>
+				</span>
+				Négatif autorisé
+			</label>
+		</div>
+		<div class="col-xs-3" ng-show="negativeAuthorized">
+			<label>Montant max</label>
+			<input type="text" class="form-control col-xs-3" placeholder="Inactive" value="">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<a class="btn btn-block btn-lg btn-success" href="#fakelink">Valider</a>
+		</div>
+	</div>
+</div>
+</br>
+<div>
+	<h4>Export des données</h4>
+</div>

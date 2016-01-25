@@ -7,6 +7,7 @@ angular.module('myApp', [
   'myApp.stats',
   'myApp.admin',
   'myApp.stocks',
+  'myApp.planning',
   'myApp.version',
   'nya.bootstrap.select'
 ]).

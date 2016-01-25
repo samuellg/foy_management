@@ -18,7 +18,7 @@
 	<ul>
 		<li ng:repeat="product in products" class="list-unstyled">
 			<div class="col-xs-3">
-	    		<button class="btn btn-block btn-lg btn-inverse" ng:click="buy(product, currentUser)" >{{product.name}}</button>
+	    		<button class="btn btn-block btn-lg {{getButtonClass(product)}} product" ng:click="buy(product, currentUser)" >{{product.name}}</button>
 	    	</div>
 	    </li>
 	</ul>
