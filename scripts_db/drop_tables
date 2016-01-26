@@ -1,0 +1,4 @@
+drop table foy_management.sale;
+drop table foy_management.product;
+drop table foy_management.user;
+drop table foy_management.product_type;

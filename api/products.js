@@ -1,67 +1,30 @@
-var express  = require('express');
+var express  = require('express'),
+  makeRequest = require('./query.js');
 var router   = express.Router();
 
 // Routing
 
-router.get('/',products);
-router.get('/count',objectsCount);
+router.get('/',fetchProducts);
 
 module.exports = router;
 
-// Handlers
 
 // GET objects
-function products(req,res){
-	// Query DB
-	var objs = 
-	[
-  {
-    "name": "Tripel Karmeliet",
-    "type": "bottle",
-    "id": 1,
-    "quantity": 15
-  },
-  {
-    "name" : "Queue de charrue",
-     "type": "bottle",
-     "id": 2,
-     "quantity": 88
-   },
-  {
-    "name" : "Pizza",
-    "type": "food",
-     "id": 3,
-     "quantity": 45
-  },
-  {
-    "name" : "Pinte stylée",
-     "type": "tapBeer",
-     "id": 4,
-     "quantity": 456
-   },
-  {"name" : "Demi stylé",
-   "type": "tapBeer",
-   "id": 4,
-   "quantity": 456}
-];
-	// Render JSON
-	res.json(objs);
+function fetchProducts(req,res) {
+  var query = new queryMaker()
+    makeRequest(query.products,function(err,rows,fields) {
+        if(err) {
+            handleError();
+            res.status(403);
+        }
+        res.json(rows)
+    })
 }
 
-// GET objects count
-function objectsCount(req,res){
-		// Query DB
-		var objs = [
-			{
-				id : 1,
-				custom : 'attribute'
-			},
-			{
-				id : 1,
-				custom : 'attribute'
-			}
-		];
-		var count = objs.length;
-		// Render JSON
-		res.json({count:count});
+
+
+function queryMaker() {
+    return {
+        'products': "Select * from product as prod join product_type as type on prod.product_type_id = type.product_type_id"
+    }
 }
