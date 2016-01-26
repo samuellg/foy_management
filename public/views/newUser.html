@@ -2,6 +2,24 @@
 <div>
 	<div class="row">
 		<div class="col-xs-3">
+			<label>First Name</label>
+			<input type="text" class="form-control col-xs-3" placeholder="Olivier" value="" ng-model="firstName">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<label>Last Name</label>
+			<input type="text" class="form-control col-xs-3" placeholder="Massou" value="" ng-model="lastName">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<label>Promotion</label>
+			<input type="integer" class="form-control col-xs-3" placeholder="2024" value="" ng-model="promotion">
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
 			<label class="checkbox" for="checkbox1">
 				<input class="custom-checkbox" value="" id="checkbox1" data-toggle="checkbox" type="checkbox" ng-model="foysteamer">
 				<span class="icons">
@@ -12,6 +30,11 @@
 				</span>
 				Foysteamer ?
 			</label>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-3">
+			<a class="btn btn-block btn-lg btn-success" ng-click="validateForm(foysteamer, firstName, lastName, promotion, balance)">Validate</a>
 		</div>
 	</div>
 </div>
