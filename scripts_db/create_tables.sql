@@ -9,7 +9,7 @@ create table user(
 
 create table product_type(
 	product_type_id INT AUTO_INCREMENT PRIMARY KEY,
-	name VARCHAR(30) NOT NULL
+	type VARCHAR(30) NOT NULL
 );
 
 create table product(
