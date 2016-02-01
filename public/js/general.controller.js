@@ -44,6 +44,21 @@ angular.module('myApp.general', ['ngRoute'])
     }
    };
 
+
+   $scope.validateNewUserForm = function(foysteamer, firstName, lastName, promotion, balance){
+    var data = {
+      "firstName" : firstName,
+      "lastName" : lastName,
+      "isFoysteamer" : foysteamer,
+      "promotion" : promotion,
+      "balance" : balance
+    }
+
+    $http.post('api/users', data).success(function(data) {
+    toastr.success("User created");
+   });
+   }
+
    
 }]);
 

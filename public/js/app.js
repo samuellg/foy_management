@@ -42,7 +42,8 @@ config(['$routeProvider', function($routeProvider) {
   })
 
     .when('/newUser', {
-      templateUrl: 'views/newUser.html'
+      templateUrl: 'views/newUser.html',
+      controller: 'GeneralCtrl'
     });
 
 }]);
