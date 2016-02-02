@@ -9,6 +9,7 @@ router.get('/',fetchUsers);
 router.get('/:id', fetchOneUser);
 router.post('/:id', updateUser);
 router.post('/', createUser);
+router.delete('/:id', deleteUser);
 
 module.exports = router;
 
@@ -23,7 +24,7 @@ function fetchUsers(req,res) {
             res.status(403).end();
         }
         res.json(rows)
-    })
+    });
 }
 
 function fetchOneUser(req,res) {
@@ -35,7 +36,7 @@ function fetchOneUser(req,res) {
             res.status(403).end();
         }
         res.json(rows)
-    })
+    });
 }
 
 
@@ -53,24 +54,63 @@ function createUser(req, res) {
 }
 
 function updateUser(req, res) {
-    console.log('updateUser');
+    var data = req.body;
+    console.log('Data : ');
+    console.log(data);
+    // user id
+    id = req.params.id;
+    var query = new queryMaker();
+    console.log(query.updateUser(id, data));
+    makeRequest(query.updateUser(id, data), function(err,rows,fields) {
+            if(err) {
+            handleError();
+            res.status(403).end();
+        }
+        res.status(200).end();
+    });
+}
+
+function deleteUser(req, res) {
+    var query = new queryMaker();
+    id = req.params.id;
+    makeRequest(query.deleteUser(id),function(err,rows,fields) {
+        if(err) {
+            handleError();
+            res.status(403).end();
+        }
+        res.json(rows)
+    });
 }
 
 
-
+/**
+* Provides all required query for users resource
+*/
 function queryMaker() {
     return {
         fetchUsers: "Select * from user",
         fetchOneUser : function (id){
-            return "Select * from user where user_id = " + id;
+            return "Select * from user where userId = " + id;
         },
         createUser : function (data){
-            return "Insert into user(firstName, lastName, balance, is_foysteamer, promo) values ("
+            return "Insert into user(firstName, lastName, balance, isFoysteamer, promo) values ("
                 + '"' + data.firstName + '", '
                 + '"' + data.lastName + '", '
                 + '"' + data.balance + '", '
                 + '"' + data.isFoysteamer + '", '
                 + '"' + data.promo + '")';
+        },
+        deleteUser : function (id){
+            return "Delete from user where userId = " + id;
+        },
+        updateUser : function(id, data){
+            return "update user "
+                + 'set firstName = "' + data.firstName + '", '
+                + 'lastName = "' + data.lastName + '", '
+                +  'promo = "' + data.promotion + '", '
+                +  'isFoysteamer = ' + data.isFoysteamer + ', '
+                +  'balance = ' + data.balance + ' '
+                + 'where userId = ' + id;
         }
     }
 }

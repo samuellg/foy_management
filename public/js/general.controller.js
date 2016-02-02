@@ -4,25 +4,16 @@
 angular.module('myApp.general', ['ngRoute'])
 
 
-.controller('GeneralCtrl', ['$scope','$http', 'toastr', function($scope, $http, toastr) {
+.controller('GeneralCtrl', ['$scope','$http', '$location','toastr', function($scope, $http, $location, toastr) {
    $http.get('api/users').success(function(data) {
    	$scope.users = data;
    });
    $http.get('api/products').success(function(data) {
     $scope.products = data;
    });
+   // A MODIFIER POUR TENIR COMPTE DES PARAMETRES DE L'ADMIN
+   $scope.maxNegative = 0;
 
-   /**
-   * buying function
-   */
-   $scope.buy = function(product, user) {
-   	if(user == "noUserSelected"){
-   		alert("Please select an user");
-   	}
-   	else{
-   		toastr.success("Bought : " + product.name + " by " + user.firstName, "New balance : " + user.balance);
-   	}
-   };
 
    // Initiate currentUser
    $scope.currentUser = "noUserSelected";
@@ -44,7 +35,9 @@ angular.module('myApp.general', ['ngRoute'])
     }
    };
 
-
+   /**
+   * Validation action for new user form
+   */
    $scope.validateNewUserForm = function(foysteamer, firstName, lastName, promotion, balance){
     var data = {
       "firstName" : firstName,
@@ -55,8 +48,36 @@ angular.module('myApp.general', ['ngRoute'])
     }
 
     $http.post('api/users', data).success(function(data) {
-    toastr.success("User created");
+      // back to the general view
+      $location.path('#/general'),
+      toastr.success("User created");
    });
+   }
+
+   $scope.buy = function(user, product){
+    // modification prix foysteamer à faire
+    if(user == "noUserSelected"){
+      toastr.warning("Please select an user");
+    }
+    else{
+      if(user.balance - product.price > $scope.maxNegative){
+        user.balance -= product.price;
+        $http.post('api/users/' + user.userId, user)
+        .success(function(){
+          var sale = {
+            "userId" : user.userId,
+            "productId" : product.productId
+          }
+          console.log(sale);
+          $http.post('api/sales/', sale).success(function(){
+            toastr.success('Sale done');
+          })
+        });
+      }
+      else{
+        toastr.error('Insufficient balance');
+      }
+    }
    }
 
    

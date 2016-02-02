@@ -11,10 +11,12 @@ var express = require('express'),
   http = require('http'),
   app = module.exports = express(),
   path = require('path'),
+  // API
   users = require('./api/users'),
   products = require('./api/products'),
   admin = require('./api/admin'),
-  index = require('./api/products');
+  index = require('./api/products'),
+  sales = require('./api/sales');
 
 /**
  * Configuration
@@ -48,13 +50,14 @@ if (env === 'production') {
 
 // serve index and view partials
 app.use('/',index);
-
 // Users Json API
 app.use('/api/users',users);
 // Products Json API
 app.use('/api/products', products);
 // Admin Json API
 app.use('/api/admin', admin);
+// Sales Json API
+app.use('/api/sales', sales);
 /**
  * Start Server
  */
